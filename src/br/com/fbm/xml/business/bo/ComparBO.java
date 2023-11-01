@@ -36,14 +36,18 @@ public class ComparBO {
 	private String contentNodeDocCompare;
 	
 	/**
+	 * Define se o node no {@code Document} 
+	 * é um node que possui elementos filhos
+	 */
+	private boolean tagPai;
+	
+	/**
 	 * Atributo determina se houve match entre os dois elementos
 	 */
 	private boolean match;
 	
 	/**
 	 * Cria nova instância de {@code ComparBO}
-	 * Create a new instance of ComparBO
-	 *
 	 */
 	public ComparBO() {}
 	
@@ -112,6 +116,22 @@ public class ComparBO {
 	}
 	
 	/**
+	 * Recupera valor do atributo {@link ComparBO#tagPai}
+	 * @return
+	 */
+	public void setTagPai(boolean tagPai) {
+		this.tagPai = tagPai;
+	}
+	
+	/**
+	 * Recupera valor do atributo {@link ComparBO#tagPai}
+	 * @return
+	 */
+	public boolean isTagPai() {
+		return tagPai;
+	}
+	
+	/**
 	 * Define valor para o atributo {@link ComparBO#match}
 	 * @param match
 	 */
@@ -125,6 +145,26 @@ public class ComparBO {
 	 */
 	public boolean isMatch() {
 		return match;
+	}
+	
+	@Override
+	public String toString() {
+		
+		return new StringBuilder()
+				.append("ComparBO[")
+				.append("\n\tnodeName=")
+				.append(nodeName)
+				.append(",\n\txpath=")
+				.append(xpath)
+				.append(",\n\tcontentNodeDocBase=")
+				.append(contentNodeDocBase)
+				.append(",\n\ttagPai=")
+				.append(tagPai)
+				.append(",\n\tmatch=")
+				.append(match)
+				.append("\n]")
+				.toString();
+		
 	}
 	
 }
