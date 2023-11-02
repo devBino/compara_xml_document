@@ -1,22 +1,28 @@
+/**
+ * Projeto para comparação de Documentos
+ * Xmls
+ * 
+ * Desenvolvido por: Fernando Bino Machado
+ * Github: https://github.com/devBino
+ * Projeto: https://github.com/devBino/compara_xml_document
+ */
 package br.com.fbm.xml.processor;
 
 import java.util.function.Consumer;
-
-import org.w3c.dom.Document;
 
 import br.com.fbm.xml.business.ComparBusiness;
 import br.com.fbm.xml.business.bo.ComparBO;
 import br.com.fbm.xml.repository.docprocess.DocProcess;
 
 /**
- * Aplica o processamento para comparar dois {@code Document}s
+ * Aplica o processamento para comparar dois {@code org.w3c.dom.Document}s
  * @author Fernando Bino Machado
  */
 public class ComparDocumentProcessor {
 
 	/**
 	 * Se utiliza de {@link ComparBusiness#compararDocuments()}
-	 * para aplicar o processamento e comparar os dois {@code Document}
+	 * para aplicar o processamento e comparar os dois {@code org.w3c.dom.Document}
 	 * definidos 
 	 * @param pDocProcess
 	 */

@@ -1,11 +1,16 @@
+/**
+ * Projeto para comparação de Documentos
+ * Xmls
+ * 
+ * Desenvolvido por: Fernando Bino Machado
+ * Github: https://github.com/devBino
+ * Projeto: https://github.com/devBino/compara_xml_document
+ */
 package br.com.fbm.xml.business.bo;
-
-import org.w3c.dom.Node;
-import org.w3c.dom.Document;
 
 /**
  * {@code ComparBO} agrupa atributos para realização
- * de comparação de objetos do tipo {@code Document} 
+ * de comparação de objetos do tipo {@code org.w3c.dom.Document} 
  * que representam os documentos de xml, um sendo 
  * documento base e outro destino de comparação.
  * @author Fernando Bino Machado
@@ -14,29 +19,29 @@ public class ComparBO {
 
 	/**
 	 * Define o xpath da tag representada pelo 
-	 * {@code Node} dentro dos documentos de comparação
+	 * {@code org.w3c.dom.Node} dentro dos documentos de comparação
 	 */
 	private String xpath;
 	
 	/**
-	 * Nome do {@code Node} de comparação
+	 * Nome do {@code org.w3c.dom.Node} de comparação
 	 */
 	private String nodeName;
 	
 	/**
-	 * Conteúdo do Node no {@code Document} base
+	 * Conteúdo do Node no {@code org.w3c.dom.Document} base
 	 * para comparação
 	 */
 	private String contentNodeDocBase;
 	
 	/**
-	 * Conteúdo do Node no {@code Document} destino
+	 * Conteúdo do Node no {@code org.w3c.dom.Document} destino
 	 * de comparação
 	 */
 	private String contentNodeDocCompare;
 	
 	/**
-	 * Define se o node no {@code Document} 
+	 * Define se o node no {@code org.w3c.dom.Document} 
 	 * é um node que possui elementos filhos
 	 */
 	private boolean tagPai;

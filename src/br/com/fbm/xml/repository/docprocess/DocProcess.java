@@ -1,3 +1,11 @@
+/**
+ * Projeto para comparação de Documentos
+ * Xmls
+ * 
+ * Desenvolvido por: Fernando Bino Machado
+ * Github: https://github.com/devBino
+ * Projeto: https://github.com/devBino/compara_xml_document
+ */
 package br.com.fbm.xml.repository.docprocess;
 
 import org.w3c.dom.Document;

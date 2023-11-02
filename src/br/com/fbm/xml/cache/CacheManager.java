@@ -1,8 +1,14 @@
+/**
+ * Projeto para comparação de Documentos
+ * Xmls
+ * 
+ * Desenvolvido por: Fernando Bino Machado
+ * Github: https://github.com/devBino
+ * Projeto: https://github.com/devBino/compara_xml_document
+ */
 package br.com.fbm.xml.cache;
 
 import java.util.List;
-
-import org.w3c.dom.Node;
 
 import br.com.fbm.xml.business.bo.ComparBO;
 
@@ -30,7 +36,7 @@ public class CacheManager {
 	 * para acessar o map de resultados de comparações 
 	 * na instância única de {@link DocCache}
 	 * e adiciona uma lista de comparações entre os
-	 * {@code Node} nodes dos dois documentos.
+	 * {@code org.w3c.dom.Node}s dos dois documentos.
 	 * @param pName
 	 * @param pListComparResult
 	 */
