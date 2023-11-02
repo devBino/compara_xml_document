@@ -1,6 +1,6 @@
 # Comparador de Xml Documents &#129299;<br>
 
-<p align="justify">Autor: Fernando Bino Machado <br><br>O presente projeto em um comparador de xmls.</p>
+<p align="justify">Autor: Fernando Bino Machado <br><br>O presente projeto consiste em um comparador de xmls.</p>
 <br>
 <p align="justify">A utilização é bem simples, basta seguir a sequência propósta abaixo:</p>
 <br>
@@ -19,7 +19,7 @@ public class App {
 
 	public static void main(String[] args) throws Exception {
 
-    //inicia builder padrão para construir um DocProcess
+    		//inicia builder padrão para construir um DocProcess
 		final DocProcessBuilder docProcessBuilder = new DocProcessBuilder();
 		
 		//define o xml base para comparação
@@ -41,7 +41,7 @@ public class App {
 		
 		final DocProcess docProcess = docProcessBuilder.build();
 
-    //processa o objeto DocProcess, realizando as comparações
+    		//processa o objeto DocProcess, realizando as comparações
 		ComparDocumentProcessor.processarComparacao(docProcess);
 		
 	}
@@ -61,11 +61,11 @@ public class App {
 
 ```java
 
-    //define o xml base para comparação
-		docProcessBuilder.setXmlBase("documents/base.xml");
+    	//define o xml base para comparação
+	docProcessBuilder.setXmlBase("documents/base.xml");
 		
-		//define o xml que será comparado com xml base
-		docProcessBuilder.setXmlCompare("documents/compare.xml");
+	//define o xml que será comparado com xml base
+	docProcessBuilder.setXmlCompare("documents/compare.xml");
 
 ```
 
