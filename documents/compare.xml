@@ -1,0 +1,36 @@
+<Servico>
+	<Valores>
+		<ValorServicos>1.00</ValorServicos>
+		<ValorDeducoes>0.00</ValorDeducoes>
+		<ValorPis>0.00</ValorPis>
+		<ValorCofins>0.00</ValorCofins>
+		<ValorInss>0.00</ValorInss>
+		<ValorIr>0.00</ValorIr>
+		<ValorCsll>0.00</ValorCsll>
+		<OutrasRetencoes>0.00</OutrasRetencoes>
+		<ValorIss>0.05</ValorIss>
+		<Aliquota>5.0</Aliquota>
+		<DescontoIncondicionado>0.00</DescontoIncondicionado>
+		<DescontoCondicionado>0.00</DescontoCondicionado>
+	</Valores>
+	<IssRetido>2</IssRetido>
+	<ResponsavelRetencao>1</ResponsavelRetencao>
+	<Discriminacao>Emitido pela equipe NTT</Discriminacao>
+	<CodigoTributacaoMunicipio>106000</CodigoTributacaoMunicipio>
+	<CodigoMunicipio>4119905</CodigoMunicipio>
+	<CodigoPais>1058</CodigoPais>
+	<ExigibilidadeISS>1</ExigibilidadeISS>
+	<MunicipioIncidencia>4119905</MunicipioIncidencia>
+	<NumeroProcesso>123</NumeroProcesso>
+	<ListaItensServico>
+		<ItemServico>
+			<ItemListaServico>1510</ItemListaServico>
+			<CodigoCnae>6209100</CodigoCnae>
+			<Descricao>TESTE ITEM</Descricao>
+			<Tributavel>1</Tributavel>
+			<Quantidade>1</Quantidade>
+			<ValorUnitario>1.00</ValorUnitario>
+			<ValorLiquido>0.00</ValorLiquido>
+		</ItemServico>
+	</ListaItensServico>
+</Servico>
