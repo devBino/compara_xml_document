@@ -41,10 +41,12 @@ public class ComparDocumentProcessor {
 				.compararDocuments();
 		
 		System.out.println( "\nResultados de Documento Base X Documento Compare\n" );
-		showResults(compar1);
+		showResults(compar1, 
+				pDocProcess.isImprimirTodosResultados());
 		
-		System.out.println( "\nResultados de Documento Compare X Documento Base" );
-		showResults(compar2);
+		System.out.println( "\nResultados de Documento Compare X Documento Base\n" );
+		showResults(compar2, 
+				pDocProcess.isImprimirTodosResultados());
 		
 	}
 	
@@ -52,7 +54,8 @@ public class ComparDocumentProcessor {
 	 * Exibe os resultados do processamento
 	 * @param pCompar
 	 */
-	private static void showResults(final ComparBusiness pCompar) {
+	private static void showResults(final ComparBusiness pCompar, 
+			final boolean pImprimirTodasComparacoes) {
 
 		Consumer<ComparBO> cs = bo -> {
 			
@@ -85,7 +88,22 @@ public class ComparDocumentProcessor {
 		};
 		
 		for(final ComparBO bo : pCompar.getListCompars()) {
+			
+			//caso não deva imprimir todas as comparações
+			//serão puladas as que deram sucesso
+			if( !pImprimirTodasComparacoes && bo.isMatch() ) {
+				continue;
+			}
+			
+			//todas as que não deram match
+			if( !pImprimirTodasComparacoes && !bo.isMatch() ) {
+				cs.accept(bo);
+				continue;
+			}
+			
+			//exibe todas as comparações
 			cs.accept(bo);
+			
 		}
 
 	}

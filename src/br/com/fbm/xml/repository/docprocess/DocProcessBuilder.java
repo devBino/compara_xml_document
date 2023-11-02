@@ -90,6 +90,16 @@ public class DocProcessBuilder {
 	}
 	
 	/**
+	 * Define se {@link DocProcess#isImprimirTodosResultados()}
+	 * sera igual a true
+	 * @return
+	 */
+	public DocProcessBuilder imprimirTodosResultados() {
+		docProcess.setImprimirTodosResultados(true);
+		return this;
+	}
+	
+	/**
 	 * Adiciona uma String representando um prefixo de namespace
 	 * em {@link DocProcessBuilder#prefixRemover}
 	 * @param pNamespace

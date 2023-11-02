@@ -40,6 +40,13 @@ public class DocProcess {
 	private boolean validarIgualdade;
 	
 	/**
+	 * Define se deve exibir todos os resultados
+	 * das comparações entre os {@code Node} dos dois
+	 * {@code Document}s
+	 */
+	private boolean imprimirTodosResultados;
+	
+	/**
 	 * Define valor para o atributo {@link DocProcess#docBase}
 	 * @param docBase
 	 */
@@ -86,6 +93,22 @@ public class DocProcess {
 	public boolean isValidarIgualdade() {
 		return validarIgualdade;
 	}
-		
+	
+	/**
+	 * Define valor para o atributo {@link DocProcess#imprimirTodosResultados}
+	 * @param imprimirTodosResultados
+	 */
+	public void setImprimirTodosResultados(boolean imprimirTodosResultados) {
+		this.imprimirTodosResultados = imprimirTodosResultados;
+	}
+	
+	/**
+	 * Retorna valor do atributo {@link DocProcess#imprimirTodosResultados}
+	 * @return
+	 */
+	public boolean isImprimirTodosResultados() {
+		return imprimirTodosResultados;
+	}
+	
 	
 }

@@ -37,10 +37,15 @@ public class App {
 		docProcessBuilder.setXmlCompare("documents/compare.xml");
 		
 		//define se as tags serão comparadas por igualdade de conteúdo
+		//caso omitido, será validada apenas a existência das tags nos dois xmls
 		//docProcessBuilder.validarIgualdade();
+		
+		//define se deverão ser exibidos os resultados de todas as comparações
+		//caso omitido, serão impressos apenas as diferenças
+		//docProcessBuilder.imprimirTodosResultados();
 				
 		//caso existam, define os prefixos namespaces a serem removidos das tags
-		//docProcessBuilder.addPrefixoNamespaceRemover("nfse","nfse1","nfse2");
+		docProcessBuilder.addPrefixoNamespaceRemover("nfse","nfse1","nfse2");
 		
 		final DocProcess docProcess = docProcessBuilder.build();
 		
