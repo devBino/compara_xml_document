@@ -5,7 +5,7 @@ import org.w3c.dom.Document;
 
 /**
  * {@code ComparBO} agrupa atributos para realização
- * de comparação de objetos do tipo {@link Document} 
+ * de comparação de objetos do tipo {@code Document} 
  * que representam os documentos de xml, um sendo 
  * documento base e outro destino de comparação.
  * @author Fernando Bino Machado
@@ -14,12 +14,12 @@ public class ComparBO {
 
 	/**
 	 * Define o xpath da tag representada pelo 
-	 * {@link Node} dentro dos documentos de comparação
+	 * {@code Node} dentro dos documentos de comparação
 	 */
 	private String xpath;
 	
 	/**
-	 * Nome do {@link Node} de comparação
+	 * Nome do {@code Node} de comparação
 	 */
 	private String nodeName;
 	

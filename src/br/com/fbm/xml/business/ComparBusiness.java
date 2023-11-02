@@ -1,10 +1,9 @@
 package br.com.fbm.xml.business;
 
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.function.Predicate;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -12,40 +11,91 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import br.com.fbm.xml.business.bo.ComparBO;
-import br.com.fbm.xml.repository.docprocess.DocProcess;
+import br.com.fbm.xml.processor.ComparDocumentProcessor;
 import br.com.fbm.xml.repository.xml.XmlUtil;
 
+/**
+ * {@code ComparBusiness} tem responsabilidade de fazer o pré processamento dos
+ * {@code Document}s e auxiliar durante processamento em 
+ * {@link ComparDocumentProcessor#processarComparacao(br.com.fbm.xml.repository.docprocess.DocProcess)}
+ * @author Fernando Bino Machado
+ */
 public class ComparBusiness {
 
+	/**
+	 * Define uma lista de {@link ComparBO}s a serem 
+	 * processados e exibidos em {@link ComparDocumentProcessor#showResults}
+	 */
 	private List<ComparBO> listCompars;
+	
+	/**
+	 * Define o primeiro {@code Document} envolvido no processamento
+	 * da comparação entre dois {@code Document}s
+	 */
 	private Document document1;
+	
+	/**
+	 * Define o primeiro {@code Document} envolvido no processamento
+	 * da comparação entre dois {@code Document}s
+	 */
 	private Document document2;
+	
+	/**
+	 * Define se durante a comparação, os {@code Node}s
+	 * serão validaros por igualdade de conteúdo
+	 */
 	private boolean validarIgualdade;
 	
+	/**
+	 * Cria instância de {@code ComparBusiness}
+	 */
 	public ComparBusiness() {
 		listCompars = new ArrayList<>();
 	}
 	
+	/**
+	 * Define valor para o atributo {@link ComparBusiness#document1}
+	 * @param pDocument
+	 * @return
+	 */
 	public ComparBusiness setDocument1(final Document pDocument) {
 		document1 = pDocument;
 		return this;
 	}
 	
+	/**
+	 * Define valor para o atributo {@link ComparBusiness#document2}
+	 * @param pDocument
+	 * @return
+	 */
 	public ComparBusiness setDocument2(final Document pDocument) {
 		document2 = pDocument;
 		return this;
 	}
 	
+	/**
+	 * Define valor para o atributo {@link ComparBusiness#validarIgualdade}
+	 * @param pValidar
+	 * @return
+	 */
 	public ComparBusiness validarIgualdade(final boolean pValidar) {
 		validarIgualdade = pValidar;
 		return this;
 	}
 	
+	/**
+	 * Recupera a lista no atributo {@link ComparBusiness#listCompars}
+	 * @return
+	 */
 	public List<ComparBO> getListCompars() {
 		return listCompars;
 	}
 	
-	public ComparBusiness buildCompareBusiness() {
+	/**
+	 * Realiza a comparação entre dois {@code Document}s
+	 * @return
+	 */
+	public ComparBusiness compararDocuments() {
 		
 		criarComparBOs(document1.getDocumentElement(),
 				listCompars, document1);
@@ -59,6 +109,13 @@ public class ComparBusiness {
 		
 	}
 	
+	/**
+	 * Cria uma lista de {@link ComparBO}s com todos os {@code Node}s
+	 * do {@code Document} base para comparação
+	 * @param pElem
+	 * @param pListCompars
+	 * @param pDocument
+	 */
 	private void criarComparBOs(final Element pElem, 
 			final List<ComparBO> pListCompars, final Document pDocument) {
 	
@@ -100,6 +157,13 @@ public class ComparBusiness {
 		
 	}
 	
+	/**
+	 * Percorre a lista criada em {@link ComparBusiness#criarComparBOs(Element, List, Document)}
+	 * adicionando os valores do segundo {@code Document} para comparação nos
+	 * {@link ComparBO}s
+	 * @param pListCompars
+	 * @param pDocCompare
+	 */
 	private void recuperarValoresDocCompare(final List<ComparBO> pListCompars, 
 			final Document pDocCompare) {
 		
@@ -119,6 +183,20 @@ public class ComparBusiness {
 		
 	}
 	
+	/**
+	 * Processa a lista de {@link ComparBO}s previamente criada em
+	 * 
+	 * {@link ComparBusiness#criarComparBOs(Element, List, Document)}
+	 * 
+	 * e
+	 * 
+	 * {@link ComparBusiness#recuperarValoresDocCompare(List, Document)}
+	 * 
+	 * definindo status para
+	 * 
+	 * {@link ComparBO#isMatch()}
+	 * 
+	 */
 	private void processNodeMatches() {
 		
 		final Predicate<ComparBO> nodeMatches = bo -> {

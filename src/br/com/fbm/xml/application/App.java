@@ -9,7 +9,7 @@ import br.com.fbm.xml.repository.docprocess.DocProcessBuilder;
 /**
  * {@code App} tem responsabilidade de iniciar a
  * aplicação e rodar alguns métodos de exemplo 
- * de conversão de {@link Document}
+ * de conversão de {@code Document}
  * 
  * @author Fernando Bino Machado
  */

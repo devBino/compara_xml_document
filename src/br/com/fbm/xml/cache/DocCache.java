@@ -12,7 +12,7 @@ import br.com.fbm.xml.business.bo.ComparBO;
  * {@code DocCache} armazena em memória, 
  * em tempo de execução resultados de comparações
  * de documentos representados por
- * objetos do tipo {@link Document}
+ * objetos do tipo {@code Document}
  * 
  * @author Fernando Bino Machado
  */
@@ -26,7 +26,7 @@ public class DocCache {
 	/**
 	 * Armazena por chaves String, listas de {@link ComparBO},
 	 * representando resultados de comparações entre 
-	 * dois {@link Document}
+	 * dois {@code Document}
 	 */
 	private Map<String, List<ComparBO>> mapComparacoes;
 	

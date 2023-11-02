@@ -1,9 +1,7 @@
 package br.com.fbm.xml.repository.docprocess;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.w3c.dom.Document;

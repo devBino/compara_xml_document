@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.function.BiFunction;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -24,11 +23,17 @@ import org.xml.sax.InputSource;
 /**
  * {@code XmlUtil} fornece métodos úteis
  * para manipulação de {@link Document}s representando
- * Xmls
+ * Xmls, além de {@code String}s que também representão xmls
  * @author Fernando Bino Machado
  */
 public class XmlUtil {
 
+	/**
+	 * Recupera o conteúdo xml de um arquivo
+	 * @param pPath
+	 * @return
+	 * @throws Exception
+	 */
 	public static String getXmlArquivo(final String pPath) throws Exception {
 		
 		final Path path = Paths.get(pPath);
@@ -50,6 +55,11 @@ public class XmlUtil {
 		
 	}
 
+	/**
+	 * Recupera o xPath de um {@code Node}
+	 * @param pNode
+	 * @return
+	 */
 	public static String getXpathNode(final Node pNode) {
 		
 		if( pNode == null ) {
@@ -85,6 +95,13 @@ public class XmlUtil {
 		
 	}
 	
+	/**
+	 * Recupera o valor de um {@code Node} através do seu 
+	 * {@code String} xPath dentro de um {@code Document}
+	 * @param pXpath
+	 * @param pDocument
+	 * @return
+	 */
 	public static String getNodeValueByXpath(final String pXpath, 
 			final Document pDocument) {
 
@@ -158,6 +175,12 @@ public class XmlUtil {
 		
 	}
 	
+	/**
+	 * Remove os prefixos das tags de um {@code String} xml
+	 * @param pXmlOriginal
+	 * @param pPrefix
+	 * @return
+	 */
 	public static String removerPrefixNamespacesXml(final String pXmlOriginal, final Set<String> pPrefix) {
 		
 		final BiFunction<String, String, String> fnRemovePrefix = (pfx, xml) -> {
@@ -222,5 +245,6 @@ public class XmlUtil {
 			exception.printStackTrace();
 		}
 	}
+	
 	
 }

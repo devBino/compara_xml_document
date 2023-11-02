@@ -7,6 +7,8 @@ import org.w3c.dom.Document;
  * {@link Document}, um sendo o documento base, e o outro
  * o documento destino de comparação, ambos representando diferentes
  * xmls.
+ * Além disso contém outros atributos para preparar a
+ * comparação dos documentos xml
  * @author Fernando Bino Machado
  */
 public class DocProcess {

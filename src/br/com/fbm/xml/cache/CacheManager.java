@@ -30,7 +30,7 @@ public class CacheManager {
 	 * para acessar o map de resultados de comparações 
 	 * na instância única de {@link DocCache}
 	 * e adiciona uma lista de comparações entre os
-	 * {@link Node} nodes dos dois documentos.
+	 * {@code Node} nodes dos dois documentos.
 	 * @param pName
 	 * @param pListComparResult
 	 */
