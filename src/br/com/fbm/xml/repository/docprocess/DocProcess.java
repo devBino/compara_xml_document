@@ -24,6 +24,12 @@ public class DocProcess {
 	private Document docCompare;
 	
 	/**
+	 * Atributo do tipo boolean que define se 
+	 * deve comparar igualdade dos conteúdos nas tags
+	 */
+	private boolean validarIgualdade;
+	
+	/**
 	 * Define valor para o atributo {@link DocProcess#docBase}
 	 * @param docBase
 	 */
@@ -55,5 +61,21 @@ public class DocProcess {
 		return docCompare;
 	}
 
+	/**
+	 * Define valor para o atributo {@link DocProcess#validarIgualdade}
+	 * @param validarIgualdade
+	 */
+	public void setValidarIgualdade(boolean validarIgualdade) {
+		this.validarIgualdade = validarIgualdade;
+	}
+	
+	/**
+	 * Retorna valor do atributo {@link DocProcess#validarIgualdade}
+	 * @return
+	 */
+	public boolean isValidarIgualdade() {
+		return validarIgualdade;
+	}
+		
 	
 }

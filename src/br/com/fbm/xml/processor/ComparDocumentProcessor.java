@@ -1,16 +1,10 @@
 package br.com.fbm.xml.processor;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.function.Consumer;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
+import br.com.fbm.xml.business.ComparBusiness;
 import br.com.fbm.xml.business.bo.ComparBO;
 import br.com.fbm.xml.repository.docprocess.DocProcess;
-import br.com.fbm.xml.repository.xml.XmlUtil;
 
 /**
  * TODO BINO Documentar Classe
@@ -19,54 +13,62 @@ public class ComparDocumentProcessor {
 
 	public static void processarComparacao(final DocProcess pDocProcess) {
 		
-		final List<ComparBO> listCompars = new ArrayList<>();
+		ComparBusiness compar1 = new ComparBusiness()
+				.setDocument1( pDocProcess.getDocBase() )
+				.setDocument2( pDocProcess.getDocCompare() )
+				.validarIgualdade(pDocProcess.isValidarIgualdade())
+				.buildCompareBusiness();
 		
-		criarComparBOs(pDocProcess.getDocBase().getDocumentElement(), 
-				listCompars, pDocProcess.getDocBase());
+		ComparBusiness compar2 = new ComparBusiness()
+				.setDocument1( pDocProcess.getDocCompare() )
+				.setDocument2( pDocProcess.getDocBase() )
+				.validarIgualdade(pDocProcess.isValidarIgualdade())
+				.buildCompareBusiness();
 		
-		System.out.println();
+		System.out.println( "\nResultados de Documento Base X Documento Compare\n" );
+		showResults(compar1);
+		
+		System.out.println( "\nResultados de Documento Compare X Documento Base" );
+		showResults(compar2);
 		
 	}
 	
-	private static void criarComparBOs(final Element pElem, 
-			final List<ComparBO> pListCompars, final Document pDocument) {
-	
-		int qtdeNdElem = XmlUtil.contarNodeElements( pElem.getChildNodes() );
-		
-		if( qtdeNdElem == 0 ) {
-			return;
-		}
-		
-		final NodeList childNodes = pElem.getChildNodes();
-		
-		for(int i=0; i<childNodes.getLength(); i++) {
+	private static void showResults(final ComparBusiness pCompar) {
+
+		Consumer<ComparBO> cs = bo -> {
 			
-			if( childNodes.item(i).getNodeType() != Node.ELEMENT_NODE ) {
-				continue;
+			final StringBuilder linha = new StringBuilder();
+			
+			linha
+				.append( bo.getNodeName() );
+			
+			if( bo.isTagPai() ) {
+				linha.append(" => tag Pai");
 			}
 			
-			Element elFilho = (Element) childNodes.item(i);
+			linha
+				.append("\n")
+				.append( bo.getXpath() )
+				.append("\nValor DocBase = ")
+				.append( bo.getContentNodeDocBase() )
+				.append("\nValor DocCompare = ")
+				.append( bo.getContentNodeDocCompare() );
 			
-			int qtdeNdsNodeFilho = XmlUtil.contarNodeElements( elFilho.getChildNodes() );
-			
-			ComparBO bo = new ComparBO();
-			
-			bo.setNodeName( elFilho.getNodeName() );
-			bo.setXpath( XmlUtil.getXpathNode( childNodes.item(i) ) );
-			bo.setContentNodeDocBase( XmlUtil.getNodeValueByXpath(
-					bo.getXpath(), pDocument) );
-			
-			if( qtdeNdsNodeFilho > 0 ) {
-				bo.setTagPai(true);
-				bo.setContentNodeDocBase(null);
+			if(!bo.isMatch()) {
+				linha.append("\n---------------------------------------------------------\n");
+				System.err.println( linha.toString() );
+				return;
 			}
 			
-			pListCompars.add(bo);
+			linha.append("\n---------------------------------------------------------\n");
+			System.out.println( linha.toString() );
 			
-			criarComparBOs(elFilho, pListCompars, pDocument);
-			
-		}
+		};
 		
+		for(final ComparBO bo : pCompar.getListCompars()) {
+			cs.accept(bo);
+		}
+
 	}
 	
 }

@@ -158,6 +158,8 @@ public class ComparBO {
 				.append(xpath)
 				.append(",\n\tcontentNodeDocBase=")
 				.append(contentNodeDocBase)
+				.append(",\n\tcontentNodeDocCompare=")
+				.append(contentNodeDocCompare)
 				.append(",\n\ttagPai=")
 				.append(tagPai)
 				.append(",\n\tmatch=")

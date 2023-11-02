@@ -15,23 +15,16 @@ import br.com.fbm.xml.repository.docprocess.DocProcessBuilder;
  */
 public class App {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
 		final DocProcess docProcess = new DocProcessBuilder()
-				.setXmlBase( getXmlBase() )
-				.setXmlCompare( getXmlCompare() )
+				.setXmlBase("documents/base.xml")
+				.setXmlCompare("documents/compare.xml")
+				.addPrefixoNamespaceRemover("nfse","nfse1","nfse2")
 				.build();
 		
 		ComparDocumentProcessor.processarComparacao(docProcess);
 		
-	}
-	
-	private static String getXmlBase() {
-		return "<teste><um><n1>val1</n1></um><dois><n2>val2</n2></dois><tres><n3>val3</n3></tres></teste>";
-	}
-	
-	private static String getXmlCompare() {
-		return "<teste><um><n1>val1</n1></um><dois></dois><tres><n3></n3></tres><quatro></quatro></teste>";
 	}
 
 }

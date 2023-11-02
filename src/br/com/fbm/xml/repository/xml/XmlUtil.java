@@ -1,6 +1,14 @@
 package br.com.fbm.xml.repository.xml;
 
 import java.io.StringReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPath;
@@ -20,6 +28,27 @@ import org.xml.sax.InputSource;
  * @author Fernando Bino Machado
  */
 public class XmlUtil {
+
+	public static String getXmlArquivo(final String pPath) throws Exception {
+		
+		final Path path = Paths.get(pPath);
+		
+		String xml = "";
+		
+		try {
+		
+			xml = Files
+					.readAllLines(path)
+					.stream()
+					.collect(Collectors.joining("\n"));
+			
+		}catch(final Exception exception) {
+			throw new Exception("O arquivo base deve estar dentro do folder " + pPath);
+		}
+		
+		return xml;
+		
+	}
 
 	public static String getXpathNode(final Node pNode) {
 		
@@ -102,15 +131,20 @@ public class XmlUtil {
 	 * Recebe uma string representando um xml e 
 	 * retorna um {@link Document}
 	 * @param pXml
+	 * @param pListaPrefixos
 	 * @return
 	 */
-	public static Document getDocumentFromStringXml(final String pXml) {
+	public static Document getDocumentFromStringXml(final String pXml,
+			final Set<String> pListaPrefixos) {
 		
 		Document document = null;
 		
 		try {
 			
-			StringReader reader = new StringReader(pXml.toString());
+			final String xmlTratado = removerPrefixNamespacesXml(pXml, 
+					pListaPrefixos);
+			
+			final StringReader reader = new StringReader(xmlTratado);
 			
 			DocumentBuilderFactory factory = criarDocumentBuilderFactory();
 			document = factory.newDocumentBuilder().parse(new InputSource(reader));
@@ -121,6 +155,30 @@ public class XmlUtil {
 		}
 		
 		return document;
+		
+	}
+	
+	public static String removerPrefixNamespacesXml(final String pXmlOriginal, final Set<String> pPrefix) {
+		
+		final BiFunction<String, String, String> fnRemovePrefix = (pfx, xml) -> {
+			return xml.replace(pfx.concat(":"), "");
+		};
+		
+		StringBuilder bdXml = new StringBuilder( pXmlOriginal );
+		
+		Iterator<String> itPrefix = pPrefix.iterator();
+		
+		while( itPrefix.hasNext() ) {
+			
+			String xmlTratado = fnRemovePrefix.apply(itPrefix.next(), 
+					bdXml.toString());
+			
+			bdXml.delete(0, bdXml.length());
+			bdXml.append(xmlTratado);
+			
+		}
+		
+		return bdXml.toString();
 		
 	}
 	

@@ -1,5 +1,11 @@
 package br.com.fbm.xml.repository.docprocess;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.w3c.dom.Document;
 
 import br.com.fbm.xml.repository.xml.XmlUtil;
@@ -30,29 +36,61 @@ public class DocProcessBuilder {
 	private String xmlCompare;
 	
 	/**
+	 * Define um Set<String> contendo os prefixos de namespaces
+	 * a serem removidos durante o build dos {@code Document}s
+	 */
+	private Set<String> prefixRemover;
+	
+	/**
 	 * Cria nova instância de {@code DocProcessBuilder}
 	 */
 	public DocProcessBuilder() {
 		docProcess = new DocProcess();
+		prefixRemover = new HashSet<>();
 	}
 	
 	/**
 	 * Define valor para {@link DocProcessBuilder#xmlBase}
-	 * @param pXml
+	 * @param pPathArquivo
 	 * @return
+	 * @throws Exception
 	 */
-	public DocProcessBuilder setXmlBase(final String pXml) {
-		xmlBase = pXml;
+	public DocProcessBuilder setXmlBase(final String pPathArquivo)
+		throws Exception {
+		xmlBase = XmlUtil.getXmlArquivo(pPathArquivo);
 		return this;
 	}
 	
 	/**
 	 * Define valor para {@link DocProcessBuilder#xmlCompare}
-	 * @param pXml
+	 * @param pPathArquivo
+	 * @return
+	 * @throws Exception
+	 */
+	public DocProcessBuilder setXmlCompare(final String pPathArquivo)
+		throws Exception {
+		xmlCompare = XmlUtil.getXmlArquivo(pPathArquivo);
+		return this;
+	}
+	
+	/**
+	 * Define se {@link DocProcess#isValidarIgualdade()}
+	 * sera igual a true
 	 * @return
 	 */
-	public DocProcessBuilder setXmlCompare(final String pXml) {
-		xmlCompare = pXml;
+	public DocProcessBuilder validarIgualdade() {
+		docProcess.setValidarIgualdade(true);
+		return this;
+	}
+	
+	/**
+	 * Adiciona uma String representando um prefixo de namespace
+	 * em {@link DocProcessBuilder#prefixRemover}
+	 * @param pNamespace
+	 * @return
+	 */
+	public DocProcessBuilder addPrefixoNamespaceRemover(final String... pPrefix) {
+		prefixRemover.addAll( Arrays.asList(pPrefix) );
 		return this;
 	}
 	
@@ -63,8 +101,8 @@ public class DocProcessBuilder {
 	 */
 	public DocProcess build() {
 		
-		docProcess.setDocBase( XmlUtil.getDocumentFromStringXml(xmlBase) );
-		docProcess.setDocCompare( XmlUtil.getDocumentFromStringXml(xmlCompare) );
+		docProcess.setDocBase( XmlUtil.getDocumentFromStringXml(xmlBase, prefixRemover) );
+		docProcess.setDocCompare( XmlUtil.getDocumentFromStringXml(xmlCompare, prefixRemover) );
 		
 		return docProcess;
 		
