@@ -8,10 +8,6 @@
  */
 package br.com.fbm.xml.application;
 
-import br.com.fbm.xml.processor.ComparDocumentProcessor;
-import br.com.fbm.xml.repository.docprocess.DocProcess;
-import br.com.fbm.xml.repository.docprocess.DocProcessBuilder;
-
 /**
  * {@code App} tem responsabilidade de iniciar a
  * aplicação e rodar alguns métodos de exemplo 
@@ -27,29 +23,6 @@ public class App {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		
-		final DocProcessBuilder docProcessBuilder = new DocProcessBuilder();
-		
-		//define o xml base para comparação
-		docProcessBuilder.setXmlBase("documents/base.xml");
-		
-		//define o xml que será comparado com xml base
-		docProcessBuilder.setXmlCompare("documents/compare.xml");
-		
-		//define se as tags serão comparadas por igualdade de conteúdo
-		//caso omitido, será validada apenas a existência das tags nos dois xmls
-		//docProcessBuilder.validarIgualdade();
-		
-		//define se deverão ser exibidos os resultados de todas as comparações
-		//caso omitido, serão impressos apenas as diferenças
-		//docProcessBuilder.imprimirTodosResultados();
-				
-		//caso existam, define os prefixos namespaces a serem removidos das tags
-		docProcessBuilder.addPrefixoNamespaceRemover("nfse","nfse1","nfse2");
-		
-		final DocProcess docProcess = docProcessBuilder.build();
-		
-		ComparDocumentProcessor.processarComparacao(docProcess);
 		
 	}
 	
