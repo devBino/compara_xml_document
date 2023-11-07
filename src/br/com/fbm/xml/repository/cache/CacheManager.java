@@ -6,7 +6,7 @@
  * Github: https://github.com/devBino
  * Projeto: https://github.com/devBino/compara_xml_document
  */
-package br.com.fbm.xml.cache;
+package br.com.fbm.xml.repository.cache;
 
 import java.util.List;
 

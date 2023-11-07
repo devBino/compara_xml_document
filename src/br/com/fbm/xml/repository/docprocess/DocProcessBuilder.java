@@ -14,6 +14,7 @@ import java.util.Set;
 
 import org.w3c.dom.Document;
 
+import br.com.fbm.xml.business.exception.AppException;
 import br.com.fbm.xml.repository.xml.XmlUtil;
 
 /**
@@ -62,7 +63,7 @@ public class DocProcessBuilder {
 	 * @throws Exception
 	 */
 	public DocProcessBuilder setXmlBase(final String pPathArquivo)
-		throws Exception {
+		throws AppException {
 		xmlBase = XmlUtil.getXmlArquivo(pPathArquivo);
 		return this;
 	}
@@ -74,7 +75,7 @@ public class DocProcessBuilder {
 	 * @throws Exception
 	 */
 	public DocProcessBuilder setXmlCompare(final String pPathArquivo)
-		throws Exception {
+		throws AppException {
 		xmlCompare = XmlUtil.getXmlArquivo(pPathArquivo);
 		return this;
 	}

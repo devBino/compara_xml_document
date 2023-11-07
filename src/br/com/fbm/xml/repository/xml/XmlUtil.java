@@ -28,6 +28,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import br.com.fbm.xml.business.exception.AppException;
+import br.com.fbm.xml.repository.type.Erro;
+
 /**
  * {@code XmlUtil} fornece métodos úteis
  * para manipulação de {@link Document}s representando
@@ -42,7 +45,8 @@ public class XmlUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String getXmlArquivo(final String pPath) throws Exception {
+	public static String getXmlArquivo(final String pPath) 
+			throws AppException {
 		
 		final Path path = Paths.get(pPath);
 		
@@ -56,7 +60,8 @@ public class XmlUtil {
 					.collect(Collectors.joining("\n"));
 			
 		}catch(final Exception exception) {
-			throw new Exception("O arquivo base deve estar dentro do folder " + pPath);
+			throw new AppException(Erro.ERRO_FILE_XML_NOT_FOUND, 
+					new Throwable("O arquivo base deve estar dentro do folder " + pPath));
 		}
 		
 		return xml;
